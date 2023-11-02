@@ -192,7 +192,9 @@ The "Average Age of Users" visualization is a line chart that tracks the average
 The "Most Common Email Domains" visualization is a bar chart that highlights the email domains most frequently used by users in your dataset. Email domains are listed on the x-axis, and the y-axis displays the count of users with email addresses from each domain. This chart helps identify the popular email service providers among your users.
 
 These interactive visualizations empower you to gain actionable insights from your real-time data stream. You can monitor and analyze data as it flows through your pipeline, enabling data-driven decision-making and trend identification
-
+![newplot (1)](https://github.com/aminelfaquiri/Real-Time-Data-Pipeline/assets/81482544/148f6e27-5451-4830-bd59-284f0c8ca0f4)
+![newplot (2)](https://github.com/aminelfaquiri/Real-Time-Data-Pipeline/assets/81482544/1ca4b70a-3112-488b-8b0d-3efbb2979e28)
+![newplot (3)](https://github.com/aminelfaquiri/Real-Time-Data-Pipeline/assets/81482544/01f162cf-5185-493e-ab3d-843d037420b4)
 
 ## Conclusion :
 In an era where data reigns supreme, the ability to process and analyze information in real-time is a game-changer. This project serves as a practical guide for data professionals, offering hands-on experience in building robust real-time data pipelines. By setting up key dependencies, streaming data, and storing it in databases, you've learned how to harness the power of data. Additionally, real-time visualizations provide dynamic insights, while considerations like GDPR compliance ensure responsible data management. We invite you to explore and adapt this project, making it a valuable resource for those seeking to leverage real-time data for data-driven decision-making.
