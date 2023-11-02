@@ -22,7 +22,101 @@ Before you begin with the Real-Time Data Pipeline project, ensure that you have 
 
 - **Python Dependencies:** Install the necessary Python libraries for data processing, visualization, and interaction with Spark and databases. You can use Python package managers like `pip` to install the required packages.
 
-## RGPD :
+## RGPD Compliance
+
+The Real-Time Data Pipeline project respects data protection regulations, including the General Data Protection Regulation (GDPR). We ensure that sensitive and personal information, such as phone numbers, login credentials, and coordinates, are not stored, processed, or shared within the project. Here's how we achieve GDPR compliance:
+
+- **Data Minimization:** We collect only the data necessary for the project's objectives, avoiding the inclusion of sensitive information.
+
+- **Data Anonymization:** Personal information, such as names and addresses, is anonymized or transformed during data processing, ensuring that the data cannot be used to identify individuals.
+
+- **Consent:** We only use data from sources for which consent has been obtained or data is publicly available and not subject to privacy restrictions.
+
+- **Data Security:** We take measures to ensure the security of data storage and transmission. Access to data is restricted to authorized personnel only.
+
+- **Data Retention:** Data is retained for the minimum time necessary to achieve the project's objectives. Data that is no longer needed is deleted or anonymized.
+
+- **Right to Erasure:** Users have the right to request the removal of their data from the project. Data will be promptly erased upon such requests.
+
+- **Documentation:** We maintain a detailed record of data processing activities, including the types of data collected, the purposes of processing, and security measures in place.
+
+- **Data Cleansing:** Regular procedures for data cleansing and removal of personal data are implemented to ensure ongoing compliance.
+
+By following these GDPR-compliant practices, we prioritize data protection and privacy while working with real-time data in our project.
+
+## Creating a Kafka Topic
+
+Before you can start streaming data with Kafka in your real-time data pipeline, you need to create a Kafka topic. Follow these steps to set up the "messages" topic:
+
+**1. Start ZooKeeper:**
+   - Ensure ZooKeeper is installed and configured on your system.
+   - Open a terminal window and navigate to the Kafka directory.
+
+**2. Start Kafka Server:**
+   - In the same terminal, start the Kafka server by running the following command:
+     ```shell
+     bin\windows\kafka-server-start.bat config\server.properties
+     ```
+     Adjust the command based on your operating system if necessary.
+
+**3. Create the "messages" Topic:**
+   - To create the "messages" topic, use the following command:
+     ```shell
+     bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic messages
+     ```
+     You can adjust the replication factor and the number of partitions based on your requirements.
+
+**4. Verify the Topic Creation:**
+   - To verify that the "messages" topic has been successfully created, run:
+     ```shell
+     bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+     ```
+     You should see "messages" listed as one of the topics.
+
+With the "messages" topic in place, you're ready to start streaming data into your real-time data pipeline. Make sure that you have Kafka up and running before proceeding with your project.
+
+## Creating a Producer Script
+
+To populate your real-time data pipeline with user data, you will need a producer script that generates user data and sends it to the Kafka topic. Follow these steps to create the producer script:
+
+**1. Generate User Data from Random User API:**
+   - Start by fetching user data from the Random User API. You can use Python libraries like `requests` to make API requests.
+   - Extract relevant attributes from the API response. Customize the attributes you want to send to the Kafka topic.
+
+**2. Set Up a Kafka Producer:**
+   - Use the Kafka Python library (e.g., `confluent-kafka-python`) to set up a Kafka producer.
+   - Configure the producer to connect to your Kafka broker and target the "messages" topic.
+
+**3. Send User Data to Kafka:**
+   - For each user data entry obtained from the Random User API, send the data as a message to the "messages" topic using the Kafka producer.
+
+Here's a simplified Python code snippet as an example of creating a producer script:
+
+```python
+from confluent_kafka import Producer
+import requests
+import json
+
+# Configure Kafka producer settings
+producer = Producer({'bootstrap.servers': 'localhost:9092'})
+
+# Fetch user data from the Random User API
+api_url = 'https://randomuser.me/api/?results=1'
+response = requests.get(api_url)
+user_data = json.loads(response.text)
+
+# Extract and customize attributes
+customized_data = {
+    "gender": user_data['results'][0]['gender'],
+    "name": user_data['results'][0]['name']['first'],
+    "custom_attribute": "your_custom_value_here"
+}
+
+# Send data to Kafka topic
+producer.produce('messages', key='user_key', value=json.dumps(customized_data))
+
+
+## Create consumer script :
 
 
 
