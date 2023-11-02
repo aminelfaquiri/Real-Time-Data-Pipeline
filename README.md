@@ -117,7 +117,59 @@ producer.produce('messages', key='user_key', value=json.dumps(customized_data))
 
 ```
 ## Create consumer script :
+## Creating a Consumer Script
 
+To consume and process data from the Kafka topic within your real-time data pipeline, you'll need a consumer script. This script reads messages from the "messages" topic and performs the desired processing. Follow these steps to create the consumer script:
 
+**1. Set Up a Kafka Consumer:**
+   - Use the Kafka Python library (e.g., `confluent-kafka-python`) to set up a Kafka consumer.
+   - Configure the consumer to connect to your Kafka broker and subscribe to the "messages" topic.
+
+**2. Consume Data from Kafka:**
+   - Continuously poll for messages from the Kafka topic and process each message as it arrives.
+
+**3. Process the Data:**
+   - Define the processing logic for the data you receive from Kafka. This can include transformations, aggregations, or other operations specific to your project's requirements.
+
+**4. Store Processed Data:**
+   - After processing, store the data in the appropriate data storage systems, such as Cassandra or MongoDB.
+   - 
+      <img width="925" alt="image" src="https://github.com/aminelfaquiri/Real-Time-Data-Pipeline/assets/81482544/f9f6214b-09fd-4c34-8705-5f726738ff33">
+      <img width="948" alt="image" src="https://github.com/aminelfaquiri/Real-Time-Data-Pipeline/assets/81482544/9e285c3d-b063-494c-8ba1-59f1e36b6403">
+
+Here's a simplified Python code snippet as an example of creating a consumer script:
+
+```python
+from confluent_kafka import Consumer, KafkaError
+
+# Configure Kafka consumer settings
+consumer = Consumer({
+    'bootstrap.servers': 'localhost:9092',
+    'group.id': 'my-group',
+    'auto.offset.reset': 'earliest'  # Set the offset to the beginning of the topic
+})
+
+# Subscribe to the "messages" topic
+consumer.subscribe(['messages'])
+
+# Continuously poll for messages
+while True:
+    msg = consumer.poll(1.0)
+
+    if msg is None:
+        continue
+    if msg.error():
+        if msg.error().code() == KafkaError._PARTITION_EOF:
+            # Reached the end of the topic
+            pass
+        else:
+            print(f"Error: {msg.error()}")
+    else:
+        # Process the received message
+        data = json.loads(msg.value())
+        
+        # Implement your custom processing logic here
+        # For example, you can perform aggregations or data transformations
+```
 
 ## Conclusion :
