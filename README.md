@@ -116,8 +116,7 @@ customized_data = {
 producer.produce('messages', key='user_key', value=json.dumps(customized_data))
 
 ```
-## Create consumer script :
-## Creating a Consumer Script
+## Creating a Consumer Script :
 
 To consume and process data from the Kafka topic within your real-time data pipeline, you'll need a consumer script. This script reads messages from the "messages" topic and performs the desired processing. Follow these steps to create the consumer script:
 
@@ -128,6 +127,9 @@ To consume and process data from the Kafka topic within your real-time data pipe
 **2. Consume Data from Kafka:**
    - Continuously poll for messages from the Kafka topic and process each message as it arrives.
 
+<img width="952" alt="image" src="https://github.com/aminelfaquiri/Real-Time-Data-Pipeline/assets/81482544/4be97ada-ce98-477f-ba54-55a94bc83a20">
+
+     
 **3. Process the Data:**
    - Define the processing logic for the data you receive from Kafka. This can include transformations, aggregations, or other operations specific to your project's requirements.
 
