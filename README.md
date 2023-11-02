@@ -4,7 +4,10 @@ In a rapidly evolving world where data is often referred to as the new currency,
 
 Whether you're a data engineer, data scientist, or developer, this project offers hands-on experience in building a data pipeline that combines various technologies and components, including PySpark, Kafka, Cassandra, MongoDB, and data visualization tools. Through this project, you'll learn how to set up a real-time data processing environment, transform and aggregate data, and gain valuable insights that can drive decision-making.
 
-## Planning
+## Planning :
+
+<img width="667" alt="image" src="https://github.com/aminelfaquiri/Real-Time-Data-Pipeline/assets/81482544/735b5bc1-9079-4820-8d18-c0d022e6e63c">
+
 ## Requirements Expression :
 Before you begin with the Real-Time Data Pipeline project, ensure that you have the following requirements and dependencies in place:
 
