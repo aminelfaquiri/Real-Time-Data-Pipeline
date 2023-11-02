@@ -115,7 +115,7 @@ customized_data = {
 # Send data to Kafka topic
 producer.produce('messages', key='user_key', value=json.dumps(customized_data))
 
-
+```
 ## Create consumer script :
 
 
