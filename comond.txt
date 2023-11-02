@@ -1,0 +1,85 @@
+C:\Users\Youcode\Desktop\Big Data Real Time\kafka> docker-compose up -d
+
+docker exec -it kafka /bin/sh 
+
+cd /opt/kafka_2.13-2.8.1/bin
+
+kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic hallo_Topic
+
+
+kafka-topics.sh --delete --zookeeper zookeeper:2181 --topic first_kafka_topic
+
+
+kafka-topics.sh --list --zookeeper zookeeper:2189
+
+kafka-topics.sh --list --bootstrap-server localhost:9092
+
+
+-------------
+
+#### casandra  :
+
+
+
+
+########################
+########################
+
+docker run -d -p 9042:9042 --name cassandra cassandra:latest
+
+
+########################
+########################
+run casandra :
+
+docker network create cassandra
+
+docker run --rm -d --name cassandra --hostname cassandra --network cassandra cassandra
+
+run code cql file :
+> docker run --rm --network cassandra -v "C:\Users\Youcode\data.cql:/scripts/data.cql" -e CQLSH_HOST=cassandra -e CQLSH_PORT=9042 -e CQLVERSION=3.4.6 nuvo/docker-cqlsh
+
+open shell :
+
+> docker exec -it 3ff329fce52f cqlsh localhost --cqlversion='3.4.6'
+
+stop docker :
+
+docker kill cassandra
+docker network rm cassandra
+----
+Docker Container IP: Determine the IP address of the Cassandra container : 
+---> docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container_name_or_id>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""
+_______
+spark streeming 
+___________
+
+ncat -l -p 9999 -k
+
+
+ncat -lk 9999 apache spark apache hadoop
+
+C:/spark/spark-3.4.1-bin-hadoop3/bin/spark-submit C:/Users/Youcode/Desktop/Big_Data_Real_Time/spark_str.py localhost 9999
+
+
+C:/spark/spark-3.4.1-bin-hadoop3/bin/pyspark --master "local[2]"
+
+
+run spark 
+
+______________
+show keyspace in shell :
+DESCRIBE KEYSPACES;
+
+show details of the keyspace :
+DESCRIBE KEYSPACE kyspacename;
+
+
+___________ kafka local :
+
+C:\Kafka\kafka\bin
+
