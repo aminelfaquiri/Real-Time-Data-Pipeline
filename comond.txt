@@ -83,3 +83,8 @@ ___________ kafka local :
 
 C:\Kafka\kafka\bin
 
+===================== github commond ===========================
+
+git commit --amend --date=" Thu Nov 2 23:06:28 2023 +0100" --no-edit
+
+git log -n 1 -- Dash_Visualisation.py

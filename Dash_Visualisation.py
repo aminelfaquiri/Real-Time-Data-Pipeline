@@ -62,3 +62,5 @@ def update_graphs(n_intervals):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# 
